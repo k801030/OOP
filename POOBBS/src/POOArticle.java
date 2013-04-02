@@ -24,6 +24,6 @@ public class POOArticle {
 		System.out.println("ID: "+ID);
 		System.out.println("title: "+title);
 		System.out.println("author: "+author);
-		System.err.println("try branch");
+		
 	}
 }
