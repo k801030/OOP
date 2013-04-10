@@ -1,7 +1,7 @@
 class Line{
-		public String type = null;
-		public int seq = 0;
-		public String name = null;
+		public String type;
+		public int id;
+		public String name;
 }
 public class POODirectory {
 
@@ -10,10 +10,9 @@ public class POODirectory {
 	private static int NumOfDir = 0; // the number of directories
 	
 	private String name ;
-	private int seq; //the sequence of directories
+	private int id; //the sequence of directories
 	
 	private final int max = 1024;
-
 	Line[] line = new Line[max]; 
 		
 	private int NumOfLine = 0; //the number of lines
@@ -21,14 +20,14 @@ public class POODirectory {
 	// method
 	public  POODirectory(String name){
 		this.name = String.valueOf(name);
-		seq = NumOfDir;
+		id = NumOfDir;
 		NumOfDir ++;
 	}
 	
 	public void add(POOBoard board){
 		if(checkLine()){
 			line[NumOfLine].type = String.valueOf("board");
-			line[NumOfLine].seq = board.getSeq();
+			line[NumOfLine].id = board.getId();
 			line[NumOfLine].name = board.getName();
 			NumOfLine++;
 		}
@@ -37,7 +36,7 @@ public class POODirectory {
 	public void add(POODirectory dir){
 		if(checkLine()){
 			line[NumOfLine].type = String.valueOf("dir");
-			line[NumOfLine].seq = dir.getSeq();
+			line[NumOfLine].id = dir.getId();
 			line[NumOfLine].name = dir.getName();
 			NumOfLine++;
 		}
@@ -91,7 +90,7 @@ public class POODirectory {
 		for(int i=0;i<max;i++){
 			line[i] = new Line();
 			line[i].type = null;
-			line[i].seq = 0;
+			line[i].id = 0;
 			line[i].name = null;
 		}
 	}
@@ -119,8 +118,8 @@ public class POODirectory {
 	}
 	
 	// GET series
-	public int getSeq(){
-		return seq;
+	public int getId(){
+		return id;
 	}
 	public String getName(){
 		return name;
