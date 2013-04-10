@@ -1,4 +1,4 @@
-class Article{
+class Arti{
 	public int seq;
 	public String title;
 }
@@ -9,12 +9,12 @@ public class POOBoard {
 	private String name;
 	private int seq; //the sequence of boards
 	
-	private Article[] item = new Article[1024]; 
-	private int NumOfitem = 0; //the number of items
+	private Arti[] arti = new Arti[1024]; 
+	private int NumOfArti = 0; //the number of items
 
 	//method
-	public POOBoard(String nametmp){
-		name = String.valueOf(nametmp);
+	public POOBoard(String name){
+		this.name = String.valueOf(name);
 		seq = NumOfBoard;
 		NumOfBoard++;
 	}
@@ -28,7 +28,7 @@ public class POOBoard {
 		
 	}
 	public int length(){
-		return 0;
+		return NumOfArti;
 	}
 	public void show(){
 		

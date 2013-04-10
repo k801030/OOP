@@ -1,23 +1,26 @@
 class Line{
-	public String type;
-	public int seq;
-	public String name;
+		public String type = null;
+		public int seq = 0;
+		public String name = null;
 }
-
 public class POODirectory {
-	//public String[] type = new String [1024];
-	//public int[] num = new int [1024];
+
+	//public String[] type = new String [max];
+	//public int[] num = new int [max];
 	private static int NumOfDir = 0; // the number of directories
 	
 	private String name ;
 	private int seq; //the sequence of directories
+	
+	private final int max = 1024;
 
-	private Line[] line = new Line[1024]; 
+	Line[] line = new Line[max]; 
+		
 	private int NumOfLine = 0; //the number of lines
 
 	// method
-	public  POODirectory(String nametmp){
-		name = String.valueOf(nametmp);
+	public  POODirectory(String name){
+		this.name = String.valueOf(name);
 		seq = NumOfDir;
 		NumOfDir ++;
 	}
@@ -71,23 +74,43 @@ public class POODirectory {
 	}
 	
 	public void show(){
+		System.out.println("[DIR] "+name+" [DIR]");
 		for(int i=0;i<NumOfLine;i++){
 			if(line[i].type.equals("board")){
-				printShow(Integer.toString(i),line[i].name, line[i].type);
+				printShow(Integer.toString(i+1),line[i].name, line[i].type);
 			}else if(line[i].type.equals("dir")){
-				printShow(Integer.toString(i),line[i].name, line[i].type);
+				printShow(Integer.toString(i+1),line[i].name, line[i].type);
 			}else if(line[i].type.equals("split")){
-				printShow(Integer.toString(i),"------------", null);
+				printShow(Integer.toString(i+1),"------------", null);
 			}
 		}
 	}
 	/////////////////////////////////////////////////////////////////////////
 	//                        Other Method                                 //
+	public void init(){ // initialization 
+		for(int i=0;i<max;i++){
+			line[i] = new Line();
+			line[i].type = null;
+			line[i].seq = 0;
+			line[i].name = null;
+		}
+	}
+	
     private void printShow(String a,String b,String c){
-    	
+    	int i;
+    	System.out.print(a);
+    	for(i=a.length();i<3;i++)
+    		System.out.print(" ");
+    	System.out.print(b);
+    	for(i=b.length();i<14;i++)
+    		System.out.print(" ");
+    	System.out.print(c);
+    	for(i=c.length();i<7;i++)
+    		System.out.print(" ");
+    	System.out.println("");
     }
 	private boolean checkLine(){
-		if(NumOfLine==1024){
+		if(NumOfLine==max){
 			System.out.print("The directory is full. Fail to add anything!");
 			return false;
 		}else {
