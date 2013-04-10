@@ -13,7 +13,7 @@ public class POODirectory {
 	private int id; //the sequence of directories
 	
 	private final int max = 1024;
-	Line[] line = new Line[max]; 
+	private Line[] line = new Line[max]; 
 		
 	private int NumOfLine = 0; //the number of lines
 
@@ -123,5 +123,8 @@ public class POODirectory {
 	}
 	public String getName(){
 		return name;
+	}
+	public int getLineId(int i){
+		return line[i-1].id;
 	}
 }

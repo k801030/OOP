@@ -1,7 +1,10 @@
+import java.util.Scanner;
+
 
 public class POOBBS {
 	public static void main(String[] args) {
-		
+		Scanner scanner = new Scanner(System.in); 
+		int nowDir = 0;
 		POODirectory[] dir = new POODirectory[100];
 		POOBoard[] board = new POOBoard[100];
 		makeDir(dir);
@@ -9,6 +12,10 @@ public class POOBBS {
 		
 		
 		dir[0].show();
+		
+		String num = String.valueOf(scanner.next());
+		nowDir = dir[nowDir].getLineId(Integer.parseInt(num));
+		dir[nowDir].show();
 	}
 
 	private static void makeDir(POODirectory[] dir){
