@@ -1,5 +1,9 @@
-
 public class POOBoard {
+	private static int seq = 0;
+	public int getSeq(){
+		return seq;
+	}
+	
 	public POOBoard(String name){
 		
 	}
