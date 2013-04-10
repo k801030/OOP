@@ -1,11 +1,22 @@
+class Article{
+	public int seq;
+	public String title;
+}
+
 public class POOBoard {
-	private static int seq = 0;
-	public int getSeq(){
-		return seq;
-	}
+	private static int NumOfBoard = 0; // the number of boards
+
+	private String name;
+	private int seq; //the sequence of boards
 	
-	public POOBoard(String name){
-		
+	private Article[] item = new Article[1024]; 
+	private int NumOfitem = 0; //the number of items
+
+	//method
+	public POOBoard(String nametmp){
+		name = String.valueOf(nametmp);
+		seq = NumOfBoard;
+		NumOfBoard++;
 	}
 	public void add(POOArticle article){
 		
@@ -21,5 +32,13 @@ public class POOBoard {
 	}
 	public void show(){
 		
+	}
+	
+	// GET series
+	public int getSeq(){
+		return seq;
+	}
+	public String getName(){
+		return name;
 	}
 }
