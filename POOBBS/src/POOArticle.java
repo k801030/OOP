@@ -24,6 +24,7 @@ public class POOArticle {
 		System.out.println("ID: "+ID);
 		System.out.println("title: "+title);
 		System.out.println("author: "+author);
-		
+		System.err.println("try upstream");
+		System.err.println("and re-check");
 	}
 }
