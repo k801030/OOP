@@ -1,6 +1,6 @@
 public class POOArticle {
 	private static final int MAXEVAL = 100;
-	private int ID;
+	private int id;
 	private String title;
 	private String author;
 	private String content;
@@ -21,10 +21,18 @@ public class POOArticle {
 	}
 	public void list(){
 		System.out.println("evaluation count: "+evalCount);
-		System.out.println("ID: "+ID);
+		System.out.println("ID: "+id);
 		System.out.println("title: "+title);
 		System.out.println("author: "+author);
 		System.err.println("try upstream");
 		System.err.println("and re-check");
+	}
+	
+	// GET series
+	public int getId(){
+		return id;
+	}
+	public String getTitle(){
+		return title;
 	}
 }
