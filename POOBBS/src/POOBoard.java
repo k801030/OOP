@@ -47,7 +47,8 @@ public class POOBoard {
 		return NumOfArti;
 	}
 	public void show(){
-		System.out.println("[DIR] "+name+" [DIR]");
+		System.out.println("[BOARD] "+name+" [BOARD]");
+		printShow("0","Home page","");
 		for(int i=0;i<NumOfArti;i++){
 			printShow(Integer.toString(i), Integer.toString(arti[i].id), arti[i].title);
 		}

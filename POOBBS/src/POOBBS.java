@@ -5,17 +5,27 @@ public class POOBBS {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in); 
 		int nowDir = 0;
-		POODirectory[] dir = new POODirectory[100];
-		POOBoard[] board = new POOBoard[100];
+		POODirectory[] dir = new POODirectory[1000];
+		POOBoard[] board = new POOBoard[1000];
 		makeDir(dir);
 		
 		
 		
 		dir[0].show();
 		
-		String num = String.valueOf(scanner.next());
-		nowDir = dir[nowDir].getLineId(Integer.parseInt(num));
-		dir[nowDir].show();
+		while(true){
+			String command = String.valueOf(scanner.next());
+			if(command == String.valueOf("addboard")){
+				
+			}else if(command == String.valueOf("adddir")){
+				
+			}else if(command == String.valueOf("addsplit")){
+				
+			}else {
+				nowDir = dir[nowDir].getLineId(Integer.parseInt(command));
+			}
+			dir[nowDir].show();
+		}
 	}
 
 	private static void makeDir(POODirectory[] dir){

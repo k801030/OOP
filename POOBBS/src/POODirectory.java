@@ -74,6 +74,7 @@ public class POODirectory {
 	
 	public void show(){
 		System.out.println("[DIR] "+name+" [DIR]");
+		printShow("0","Home","dir");
 		for(int i=0;i<NumOfLine;i++){
 			if(line[i].type.equals("board")){
 				printShow(Integer.toString(i+1),line[i].name, line[i].type);
@@ -125,6 +126,9 @@ public class POODirectory {
 		return name;
 	}
 	public int getLineId(int i){
-		return line[i-1].id;
+		if(i>0)
+			return line[i-1].id;
+		else 	// back to home page
+			return 0;   
 	}
 }
