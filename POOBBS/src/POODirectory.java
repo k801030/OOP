@@ -1,3 +1,5 @@
+import java.util.concurrent.Exchanger;
+
 class Line{
 		public String type;
 		public int id;
@@ -51,7 +53,8 @@ public class POODirectory {
 	
 	public void del(int pos){
 		Line tmpLine = new Line();
-		for(int i = pos; i<NumOfLine-1; i++){
+		pos--;
+		for(int i = pos; i<NumOfLine; i++){
 			tmpLine = line[i];
 			line[i] = line[i+1];
 			line[i+1] = tmpLine;
@@ -61,11 +64,11 @@ public class POODirectory {
 	
 	public void move(int src, int dest){
 		Line tmpLine = new Line();
-		for(int i = src; i<dest-1; i++){
-			tmpLine = line[i];
-			line[i] = line[i+1];
-			line[i+1] = tmpLine;
-		}
+		src--;
+		dest--;
+		tmpLine = line[src];
+		line[src] = line[dest];
+		line[dest] = tmpLine;
 	}
 	
 	public int length(){
@@ -110,7 +113,9 @@ public class POODirectory {
     		System.out.print(" ");
     	System.out.println("");
     }
-	private boolean checkLine(){
+    
+	
+    private boolean checkLine(){  // check if the dir is full
 		if(NumOfLine==MAX){
 			System.out.print("The directory is full. Fail to add anything!");
 			return false;
@@ -118,7 +123,24 @@ public class POODirectory {
 			return true;
 		}
 	}
-
+	
+	private void exchange(int i){  // sort the line   for "del" and "move"
+		int tmpint;
+		String tmpString;
+		System.err.println(line[1].name);
+		tmpint = line[i].id;
+		line[i].id = line[i+1].id;
+		line[i+1].id = tmpint;
+		
+		tmpString = String.valueOf(line[i].name);
+		line[i].name = String.valueOf(line[i+1].name);
+		line[i+1].name = String.valueOf(tmpString);
+		tmpString = String.valueOf(line[i].type);
+		
+		line[i].type = String.valueOf(line[i+1].type);
+		line[i+1].type = String.valueOf(tmpString);
+		System.err.println(line[1].name);
+	}
 	
 	// GET series
 	public int getId(){
@@ -137,6 +159,8 @@ public class POODirectory {
 		if(i>0)
 			return line[i-1].type;
 		else 	// back to home page
-			return null;   
+			return "dir";   
 	}
+	
+	
 }

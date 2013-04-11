@@ -29,6 +29,7 @@ public class POOBoard {
 	}
 	public void del(int pos){
 		Arti tmpArti = new Arti();
+		pos--;
 		for(int i = pos; i<NumOfArti-1; i++){
 			tmpArti = arti[i];
 			arti[i] = arti[i+1];
@@ -38,12 +39,11 @@ public class POOBoard {
 	}
 	public void move(int src, int dest){
 		Arti tmpArti = new Arti();
-		for(int i = src; i<dest-1; i++){
-			tmpArti = arti[i];
-			arti[i] = arti[i+1];
-			arti[i+1] = tmpArti;
-		}
-		NumOfArti--;
+		src--;
+		dest--;
+		tmpArti = arti[src];
+		arti[src] = arti[dest];
+		arti[dest] = tmpArti;
 	}
 	public int length(){
 		return NumOfArti;
@@ -52,7 +52,7 @@ public class POOBoard {
 		System.out.println("[BOARD] "+name+" [BOARD]");
 		printShow("0","..","back");
 		for(int i=0;i<NumOfArti;i++){
-			printShow(Integer.toString(i), arti[i].title, Integer.toString(arti[i].id));
+			printShow(Integer.toString(i+1), arti[i].title, Integer.toString(arti[i].id));
 		}
 	}
 	/////////////////////////////////////////////////////////////////////////

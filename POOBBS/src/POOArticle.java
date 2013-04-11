@@ -1,6 +1,6 @@
 public class POOArticle {
 	private static final int MAXEVAL = 100;
-	private static int NumOfArticle = 0; // the number of article
+	private static int NumOfArticle = 100; // the number of article
 	private int id;
 	private String title;
 	private String author;
@@ -8,8 +8,9 @@ public class POOArticle {
 	private int evalCount;
 	private String[] evalMessage = new String [MAXEVAL];
 	
-	public POOArticle(String title){
+	public POOArticle(String title,String content){
 		this.title = String.valueOf(title);
+		this.content = String.valueOf(content);
 		id = NumOfArticle;
 		NumOfArticle++;
 	}

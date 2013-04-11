@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.prefs.BackingStoreException;
 import java.util.regex.Pattern;
 
 
@@ -8,41 +9,64 @@ public class POOBBS {
 		int nowDir = 0;  // the pos of dir
 		int nowBoard = 0; // the pos of board
 		int numOfDir = 0;
+		int numOfBoard = 0;
+		int numOfArticle = 0;
 		POODirectory[] dir = new POODirectory[1000];
 		POOBoard[] board = new POOBoard[1000];
 		POOArticle[] article = new POOArticle[1000];
 		int viewMode = 1;   // 1: dir mode,  2: board mode, 3:article mode
 		numOfDir = makeDir(dir,numOfDir);
-		makeBoard(dir,board);
-		makeArticle(board,article);
+		numOfBoard = makeBoard(dir,board,numOfBoard);
+		numOfArticle = makeArticle(board,article,numOfArticle);
 
 		String command;
-		String command2;
 		
 		while(true){ 
+			//dir[nowDir].move(1, 2);
 			switch (viewMode) {
 			
 			case 1: //dir mode
 				dir[nowDir].show();
 				command = String.valueOf(scanner.next());
-				if(command.equals("addboard")){
-				
-				}else if(command.equals("adddir")){
-					command2 = String.valueOf(scanner.next());
-					dir[numOfDir] = new POODirectory(command2);
+				if(command.equals("board")){
+					String name = String.valueOf(scanner.next());
+					boolean add = false;
+					for(int i=0;i<numOfBoard;i++){
+						if(board[i].getName().equals(name)){
+							dir[nowDir].add(board[i]);
+							add = true;
+							break;
+						}
+					}
+					if(add==false){
+							System.out.println("The board \""+name+"\" does not exist");
+					}
+					
+				}else if(command.equals("dir")){
+					String name = String.valueOf(scanner.next());
+					dir[numOfDir] = new POODirectory(name);
 					dir[nowDir].add(dir[numOfDir]);
 					numOfDir++;
-				}else if(command.equals("addsplit")){
+					
+				}else if(command.equals("split")){
 					dir[nowDir].add_split();
+					
 				}else if(command.equals("move")){
-				
+					int src = scanner.nextInt();
+					int dest = scanner.nextInt();
+					dir[nowDir].move(src, dest);
+					
+				}else if(command.equals("del")){
+					int pos = scanner.nextInt();
+					dir[nowDir].del(pos);
+					
 				}else if(isNum(command)){
 					int num = Integer.parseInt(command);
 					if(dir[nowDir].getLineType(num).equals("dir"))
 						nowDir = dir[nowDir].getLineId(num);
 					else if(dir[nowDir].getLineType(num).equals("board")){
 						nowBoard = dir[nowDir].getLineId(num);
-						viewMode = 2;
+						viewMode = 2; // to board
 					}
 				}else{
 					System.out.println("[error input]");
@@ -52,6 +76,34 @@ public class POOBBS {
 			case 2: //board mode
 				board[nowBoard].show();
 				command = String.valueOf(scanner.next());
+				if(command.equals("article")){
+					System.out.print("Title:");
+					String title = String.valueOf(scanner.next());
+					System.out.print("Content:");
+					String content = String.valueOf(scanner.next());
+					
+					article[numOfArticle] = new POOArticle(title,content);
+					board[nowBoard].add(article[numOfArticle]);
+					numOfArticle++;
+				}else if(command.equals("move")){
+					int src = scanner.nextInt();
+					int dest = scanner.nextInt();
+					
+					board[nowBoard].move(src, dest);
+				}else if(command.equals("del")){
+					int pos = scanner.nextInt();
+					board[nowBoard].del(pos);
+					
+				}else if(isNum(command)){
+					int num = Integer.parseInt(command);
+					if(num == 0){  // back to dir
+						viewMode = 1;//to dir
+					}
+					
+				}else{
+					System.out.println("[error input]");
+					continue;
+				}
 				break;
 				
 			case 3: //article mode
@@ -91,8 +143,7 @@ public class POOBBS {
 		
 		return numOfDir;
 	}
-	private static void makeBoard(POODirectory[] dir,POOBoard[] board){
-		int numOfBoard = 0;
+	private static int makeBoard(POODirectory[] dir,POOBoard[] board,int numOfBoard){
 		int i;
 		board[numOfBoard++] = new POOBoard("CSIE_b99");
 		board[numOfBoard++] = new POOBoard("CSIE_b98");
@@ -106,16 +157,16 @@ public class POOBBS {
 		board[numOfBoard++] = new POOBoard("ONE_PIECE");
 		for(i=4;i<8;i++)
 			dir[4].add(board[i]);
-		
+		return numOfBoard;
 	}
-	private static void makeArticle(POOBoard[] board,POOArticle[] article){
-		int numOfArticle = 0;
+	private static int makeArticle(POOBoard[] board,POOArticle[] article,int numOfArticle){
 		int i;
-		article[numOfArticle++] = new POOArticle("intr:Vison");
-		article[numOfArticle++] = new POOArticle("intr:Jason");
-		article[numOfArticle++] = new POOArticle("intr:YingJiuo");
+		article[numOfArticle++] = new POOArticle("intr:Vison","hello");
+		article[numOfArticle++] = new POOArticle("intr:Jason","hello");
+		article[numOfArticle++] = new POOArticle("intr:YingJiuo","hello");
 		for(i=0;i<3;i++)
 			board[0].add(article[i]);
+		return numOfArticle;
 	}
 
 	private static boolean isNum(String str){
