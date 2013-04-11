@@ -10,8 +10,8 @@ public class POODirectory {
 	private String name ;
 	private int id; //the unique sequence of directories
 	
-	private final int max = 1024;
-	private Line[] line = new Line[max]; 
+	private final int MAX = 1024;
+	private Line[] line = new Line[MAX]; 
 	
 	private int NumOfLine = 0; //the number of lines
 	private int pre_dir = 0;  // the pre one of dir; in order to "go back"
@@ -88,7 +88,7 @@ public class POODirectory {
 	/////////////////////////////////////////////////////////////////////////
 	//                        Other Method                                 //
 	private void init(){ // initialization 
-		for(int i=0;i<max;i++){
+		for(int i=0;i<MAX;i++){
 			line[i] = new Line();
 			line[i].type = null;
 			line[i].id = 0;
@@ -110,7 +110,7 @@ public class POODirectory {
     	System.out.println("");
     }
 	private boolean checkLine(){
-		if(NumOfLine==max){
+		if(NumOfLine==MAX){
 			System.out.print("The directory is full. Fail to add anything!");
 			return false;
 		}else {
@@ -131,5 +131,11 @@ public class POODirectory {
 			return line[i-1].id;
 		else 	// back to home page
 			return pre_dir;   
+	}
+	public String getLineType(int i){
+		if(i>0)
+			return line[i-1].type;
+		else 	// back to home page
+			return null;   
 	}
 }

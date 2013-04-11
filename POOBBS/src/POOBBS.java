@@ -6,17 +6,22 @@ public class POOBBS {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in); 
 		int nowDir = 0;  // the pos of dir
+		int nowBoard = 0; // the pos of board
 		int numOfDir = 0;
 		POODirectory[] dir = new POODirectory[1000];
 		POOBoard[] board = new POOBoard[1000];
 
+		int viewMode = 0;   // 0: dir mode,  1: board mode, 2:article mode
 		numOfDir = makeDir(dir,numOfDir);
 		makeBoard(dir,board);
-		dir[0].show();
+
 		String command;
 		String command2;
 		
 		while(true){
+			if(viewMode ==0){
+			
+			dir[nowDir].show();
 			command = String.valueOf(scanner.next());
 			if(command.equals("addboard")){
 				
@@ -27,13 +32,21 @@ public class POOBBS {
 				numOfDir++;
 			}else if(command.equals("addsplit")){
 				dir[nowDir].add_split();
+			}else if(command.equals("move")){
+				
 			}else if(isNum(command)){
-				nowDir = dir[nowDir].getLineId(Integer.parseInt(command));
+				int num = Integer.parseInt(command);
+				if(dir[nowDir].getLineType(num).equals("dir"))
+					nowDir = dir[nowDir].getLineId(num);
+				else if(dir[nowDir].getLineType(num).equals("board")){
+					nowBoard = dir[nowDir].getLineId(num);
+					
+				}
 			}else{
 				System.out.println("[error input]");
 				continue;
 			}
-			dir[nowDir].show();
+			}
 		}
 	}
 

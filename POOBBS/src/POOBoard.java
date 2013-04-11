@@ -23,6 +23,7 @@ public class POOBoard {
 		if(checkArti()){
 			arti[NumOfArti].id = article.getId(); 
 			arti[NumOfArti].title = String.valueOf(article.getTitle());
+			NumOfArti++;
 		}
 	}
 	public void del(int pos){
