@@ -9,7 +9,7 @@ public class POOBoard {
 	private String name;
 	private int id; //the unique sequence of boards
 	
-	private final int max = 1024;
+	private final int MAX = 1024;
 	private Arti[] arti = new Arti[1024]; 
 	private int NumOfArti = 0; //the number of items
 
@@ -18,6 +18,7 @@ public class POOBoard {
 		this.name = String.valueOf(name);
 		id = NumOfBoard;
 		NumOfBoard++;
+		init();
 	}
 	public void add(POOArticle article){
 		if(checkArti()){
@@ -51,7 +52,17 @@ public class POOBoard {
 		System.out.println("[BOARD] "+name+" [BOARD]");
 		printShow("0","..","back");
 		for(int i=0;i<NumOfArti;i++){
-			printShow(Integer.toString(i), Integer.toString(arti[i].id), arti[i].title);
+			printShow(Integer.toString(i), arti[i].title, Integer.toString(arti[i].id));
+		}
+	}
+	/////////////////////////////////////////////////////////////////////////
+	//                        Other Method                                 //
+	
+	private void init(){ // initialization 
+		for(int i=0;i<MAX;i++){
+			arti[i] = new Arti();
+			arti[i].id = 0;
+			arti[i].title = null;
 		}
 	}
 	private void printShow(String a,String b,String c){
@@ -60,7 +71,7 @@ public class POOBoard {
 	   	for(i=a.length();i<3;i++)
 	   		System.out.print(" ");
 	   	System.out.print(b);
-	   	for(i=b.length();i<5;i++)
+	   	for(i=b.length();i<14;i++)
 	   		System.out.print(" ");
 	   	System.out.print(c);
 	   	for(i=c.length();i<7;i++)
@@ -68,7 +79,7 @@ public class POOBoard {
 	    System.out.println("");
 	}
 	private boolean checkArti(){
-		if(NumOfArti==max){
+		if(NumOfArti==MAX){
 			System.out.print("The board is full. Fail to add anything!");
 			return false;
 		}else {

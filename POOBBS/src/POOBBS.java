@@ -10,42 +10,52 @@ public class POOBBS {
 		int numOfDir = 0;
 		POODirectory[] dir = new POODirectory[1000];
 		POOBoard[] board = new POOBoard[1000];
-
-		int viewMode = 0;   // 0: dir mode,  1: board mode, 2:article mode
+		POOArticle[] article = new POOArticle[1000];
+		int viewMode = 1;   // 1: dir mode,  2: board mode, 3:article mode
 		numOfDir = makeDir(dir,numOfDir);
 		makeBoard(dir,board);
+		makeArticle(board,article);
 
 		String command;
 		String command2;
 		
-		while(true){
-			if(viewMode ==0){
+		while(true){ 
+			switch (viewMode) {
 			
-			dir[nowDir].show();
-			command = String.valueOf(scanner.next());
-			if(command.equals("addboard")){
+			case 1: //dir mode
+				dir[nowDir].show();
+				command = String.valueOf(scanner.next());
+				if(command.equals("addboard")){
 				
-			}else if(command.equals("adddir")){
-				command2 = String.valueOf(scanner.next());
-				dir[numOfDir] = new POODirectory(command2);
-				dir[nowDir].add(dir[numOfDir]);
-				numOfDir++;
-			}else if(command.equals("addsplit")){
-				dir[nowDir].add_split();
-			}else if(command.equals("move")){
+				}else if(command.equals("adddir")){
+					command2 = String.valueOf(scanner.next());
+					dir[numOfDir] = new POODirectory(command2);
+					dir[nowDir].add(dir[numOfDir]);
+					numOfDir++;
+				}else if(command.equals("addsplit")){
+					dir[nowDir].add_split();
+				}else if(command.equals("move")){
 				
-			}else if(isNum(command)){
-				int num = Integer.parseInt(command);
-				if(dir[nowDir].getLineType(num).equals("dir"))
-					nowDir = dir[nowDir].getLineId(num);
-				else if(dir[nowDir].getLineType(num).equals("board")){
-					nowBoard = dir[nowDir].getLineId(num);
-					
+				}else if(isNum(command)){
+					int num = Integer.parseInt(command);
+					if(dir[nowDir].getLineType(num).equals("dir"))
+						nowDir = dir[nowDir].getLineId(num);
+					else if(dir[nowDir].getLineType(num).equals("board")){
+						nowBoard = dir[nowDir].getLineId(num);
+						viewMode = 2;
+					}
+				}else{
+					System.out.println("[error input]");
+					continue;
 				}
-			}else{
-				System.out.println("[error input]");
-				continue;
-			}
+				break;
+			case 2: //board mode
+				board[nowBoard].show();
+				command = String.valueOf(scanner.next());
+				break;
+				
+			case 3: //article mode
+				break;
 			}
 		}
 	}
@@ -98,7 +108,16 @@ public class POOBBS {
 			dir[4].add(board[i]);
 		
 	}
-	
+	private static void makeArticle(POOBoard[] board,POOArticle[] article){
+		int numOfArticle = 0;
+		int i;
+		article[numOfArticle++] = new POOArticle("intr:Vison");
+		article[numOfArticle++] = new POOArticle("intr:Jason");
+		article[numOfArticle++] = new POOArticle("intr:YingJiuo");
+		for(i=0;i<3;i++)
+			board[0].add(article[i]);
+	}
+
 	private static boolean isNum(String str){
 		Pattern pattern = Pattern.compile("[0-9]*");
 		return pattern.matcher(str).matches();

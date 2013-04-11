@@ -87,6 +87,7 @@ public class POODirectory {
 	}
 	/////////////////////////////////////////////////////////////////////////
 	//                        Other Method                                 //
+	
 	private void init(){ // initialization 
 		for(int i=0;i<MAX;i++){
 			line[i] = new Line();
