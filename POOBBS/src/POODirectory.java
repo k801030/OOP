@@ -22,6 +22,7 @@ public class POODirectory {
 		this.name = String.valueOf(name);
 		id = NumOfDir;
 		NumOfDir ++;
+		init();
 	}
 	
 	public void add(POOBoard board){
@@ -87,7 +88,7 @@ public class POODirectory {
 	}
 	/////////////////////////////////////////////////////////////////////////
 	//                        Other Method                                 //
-	public void init(){ // initialization 
+	private void init(){ // initialization 
 		for(int i=0;i<max;i++){
 			line[i] = new Line();
 			line[i].type = null;

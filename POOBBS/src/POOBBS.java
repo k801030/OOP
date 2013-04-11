@@ -1,8 +1,6 @@
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import javax.management.loading.PrivateClassLoader;
-
 
 public class POOBBS {
 	public static void main(String[] args) {
@@ -14,10 +12,9 @@ public class POOBBS {
 		POOBoard[] board = new POOBoard[1000];
 
 		makeDir(dir);
-		makeBoard(board);
+		makeBoard(dir,board);
 		
 		mydir[0] = new POODirectory("My Favorite");
-		mydir[0].init();
 		mydir[0].show();
 		String command;
 		String command2;
@@ -28,7 +25,6 @@ public class POOBBS {
 			}else if(command.equals("adddir")){
 				command2 = String.valueOf(scanner.next());
 				mydir[numOfMyDir] = new POODirectory(command2);
-				mydir[numOfMyDir].init();
 				mydir[nowDir].add(mydir[numOfMyDir]);
 				numOfMyDir++;
 			}else if(command.equals("addsplit")){
@@ -52,34 +48,44 @@ public class POOBBS {
 		dir[numOfDir++] = new POODirectory("NCCU");
 		dir[numOfDir++] = new POODirectory("University");
 		dir[numOfDir++] = new POODirectory("HOT");
+		for(i=1;i<=4;i++)
+			dir[0].add(dir[i]);
 		// put in NTU
 		dir[numOfDir++] = new POODirectory("CSIE");
 		dir[numOfDir++] = new POODirectory("BA");
 		dir[numOfDir++] = new POODirectory("ME");
+		for(i=5;i<=7;i++)
+			dir[1].add(dir[i]);
 		// put in NCCU
 		dir[numOfDir++] = new POODirectory("NCCU_1");
 		dir[numOfDir++] = new POODirectory("NCCU_2");
 		dir[numOfDir++] = new POODirectory("NCCU_3");
+		for(i=8;i<=10;i++)
+			dir[2].add(dir[i]);
 		// put in University
 		dir[numOfDir++] = new POODirectory("NCTU");
 		dir[numOfDir++] = new POODirectory("NCHU");
 		dir[numOfDir++] = new POODirectory("NTNU");
-
-		for(i=0;i<numOfDir;i++)
-			dir[i].init();
-		
-		for(i=1;i<=4;i++)
-			dir[0].add(dir[i]);
-		for(i=5;i<=7;i++)
-			dir[1].add(dir[i]);
-		for(i=8;i<=10;i++)
-			dir[2].add(dir[i]);
 		for(i=11;i<=13;i++)
 			dir[3].add(dir[i]);
 		
 		POODirectory.finish();
 	}
-	private static void makeBoard{
+	private static void makeBoard(POODirectory[] dir,POOBoard[] board){
+		int numOfBoard = 0;
+		int i;
+		board[numOfBoard++] = new POOBoard("CSIE_b99");
+		board[numOfBoard++] = new POOBoard("CSIE_b98");
+		board[numOfBoard++] = new POOBoard("CSIE_b00");
+		board[numOfBoard++] = new POOBoard("CSIE_b01");
+		for(i=0;i<4;i++)
+			dir[5].add(board[i]);
+		board[numOfBoard++] = new POOBoard("JOKE");
+		board[numOfBoard++] = new POOBoard("SEX");
+		board[numOfBoard++] = new POOBoard("LOL");
+		board[numOfBoard++] = new POOBoard("ONE_PIECE");
+		for(i=4;i<8;i++)
+			dir[4].add(board[i]);
 		
 	}
 	
