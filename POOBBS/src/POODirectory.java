@@ -117,6 +117,9 @@ public class POODirectory {
 			return true;
 		}
 	}
+	public static void finish(){
+		NumOfDir = 0; 
+	}
 	
 	// GET series
 	public int getId(){

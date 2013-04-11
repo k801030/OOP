@@ -1,30 +1,45 @@
 import java.util.Scanner;
+import java.util.regex.Pattern;
+
+import javax.management.loading.PrivateClassLoader;
 
 
 public class POOBBS {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in); 
 		int nowDir = 0;
+		int numOfMyDir = 1;
 		POODirectory[] dir = new POODirectory[1000];
+		POODirectory[] mydir = new POODirectory[1000];
 		POOBoard[] board = new POOBoard[1000];
+
 		makeDir(dir);
+		makeBoard(board);
 		
-		
-		
-		dir[0].show();
-		
+		mydir[0] = new POODirectory("My Favorite");
+		mydir[0].init();
+		mydir[0].show();
+		String command;
+		String command2;
 		while(true){
-			String command = String.valueOf(scanner.next());
-			if(command == String.valueOf("addboard")){
+			command = String.valueOf(scanner.next());
+			if(command.equals("addboard")){
 				
-			}else if(command == String.valueOf("adddir")){
+			}else if(command.equals("adddir")){
+				command2 = String.valueOf(scanner.next());
+				mydir[numOfMyDir] = new POODirectory(command2);
+				mydir[numOfMyDir].init();
+				mydir[nowDir].add(mydir[numOfMyDir]);
+				numOfMyDir++;
+			}else if(command.equals("addsplit")){
 				
-			}else if(command == String.valueOf("addsplit")){
-				
-			}else {
-				nowDir = dir[nowDir].getLineId(Integer.parseInt(command));
+			}else if(isNum(command)){
+				nowDir = mydir[nowDir].getLineId(Integer.parseInt(command));
+			}else{
+				System.out.println("error input.");
+				continue;
 			}
-			dir[nowDir].show();
+			mydir[nowDir].show();
 		}
 	}
 
@@ -61,5 +76,15 @@ public class POOBBS {
 			dir[2].add(dir[i]);
 		for(i=11;i<=13;i++)
 			dir[3].add(dir[i]);
+		
+		POODirectory.finish();
+	}
+	private static void makeBoard{
+		
+	}
+	
+	private static boolean isNum(String str){
+		Pattern pattern = Pattern.compile("[0-9]*");
+		return pattern.matcher(str).matches();
 	}
 }
