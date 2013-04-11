@@ -5,44 +5,41 @@ import java.util.regex.Pattern;
 public class POOBBS {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in); 
-		int nowDir = 0;
-		int numOfMyDir = 1;
+		int nowDir = 0;  // the pos of dir
+		int numOfDir = 0;
 		POODirectory[] dir = new POODirectory[1000];
-		POODirectory[] mydir = new POODirectory[1000];
 		POOBoard[] board = new POOBoard[1000];
 
-		makeDir(dir);
+		numOfDir = makeDir(dir,numOfDir);
 		makeBoard(dir,board);
-		
-		mydir[0] = new POODirectory("My Favorite");
-		mydir[0].show();
+		dir[0].show();
 		String command;
 		String command2;
+		
 		while(true){
 			command = String.valueOf(scanner.next());
 			if(command.equals("addboard")){
 				
 			}else if(command.equals("adddir")){
 				command2 = String.valueOf(scanner.next());
-				mydir[numOfMyDir] = new POODirectory(command2);
-				mydir[nowDir].add(mydir[numOfMyDir]);
-				numOfMyDir++;
+				dir[numOfDir] = new POODirectory(command2);
+				dir[nowDir].add(dir[numOfDir]);
+				numOfDir++;
 			}else if(command.equals("addsplit")){
-				
+				dir[nowDir].add_split();
 			}else if(isNum(command)){
-				nowDir = mydir[nowDir].getLineId(Integer.parseInt(command));
+				nowDir = dir[nowDir].getLineId(Integer.parseInt(command));
 			}else{
-				System.out.println("error input.");
+				System.out.println("[error input]");
 				continue;
 			}
-			mydir[nowDir].show();
+			dir[nowDir].show();
 		}
 	}
 
-	private static void makeDir(POODirectory[] dir){
-		int numOfDir = 0;
+	private static int makeDir(POODirectory[] dir, int numOfDir){
 		int i;
-		dir[numOfDir++] = new POODirectory("Home");
+		dir[numOfDir++] = new POODirectory("My Favorite");
 		// put in home
 		dir[numOfDir++] = new POODirectory("NTU");
 		dir[numOfDir++] = new POODirectory("NCCU");
@@ -69,7 +66,7 @@ public class POOBBS {
 		for(i=11;i<=13;i++)
 			dir[3].add(dir[i]);
 		
-		POODirectory.finish();
+		return numOfDir;
 	}
 	private static void makeBoard(POODirectory[] dir,POOBoard[] board){
 		int numOfBoard = 0;

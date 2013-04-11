@@ -5,18 +5,16 @@ class Line{
 }
 public class POODirectory {
 
-	//public String[] type = new String [max];
-	//public int[] num = new int [max];
 	private static int NumOfDir = 0; // the number of directories
 	
 	private String name ;
-	private int id; //the sequence of directories
+	private int id; //the unique sequence of directories
 	
 	private final int max = 1024;
 	private Line[] line = new Line[max]; 
-		
+	
 	private int NumOfLine = 0; //the number of lines
-
+	private int pre_dir = 0;  // the pre one of dir; in order to "go back"
 	// method
 	public  POODirectory(String name){
 		this.name = String.valueOf(name);
@@ -41,6 +39,7 @@ public class POODirectory {
 			line[NumOfLine].name = dir.getName();
 			NumOfLine++;
 		}
+		dir.pre_dir = getId();
 	}
 	
 	public void add_split(){
@@ -75,14 +74,14 @@ public class POODirectory {
 	
 	public void show(){
 		System.out.println("[DIR] "+name+" [DIR]");
-		printShow("0","Home","dir");
+		printShow("0","..","back");
 		for(int i=0;i<NumOfLine;i++){
 			if(line[i].type.equals("board")){
 				printShow(Integer.toString(i+1),line[i].name, line[i].type);
 			}else if(line[i].type.equals("dir")){
 				printShow(Integer.toString(i+1),line[i].name, line[i].type);
 			}else if(line[i].type.equals("split")){
-				printShow(Integer.toString(i+1),"------------", null);
+				printShow("","------------","");
 			}
 		}
 	}
@@ -118,9 +117,7 @@ public class POODirectory {
 			return true;
 		}
 	}
-	public static void finish(){
-		NumOfDir = 0; 
-	}
+
 	
 	// GET series
 	public int getId(){
@@ -133,6 +130,6 @@ public class POODirectory {
 		if(i>0)
 			return line[i-1].id;
 		else 	// back to home page
-			return 0;   
+			return pre_dir;   
 	}
 }

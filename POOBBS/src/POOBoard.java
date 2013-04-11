@@ -7,7 +7,7 @@ public class POOBoard {
 	private static int NumOfBoard = 0; // the number of boards
 
 	private String name;
-	private int id; //the sequence of boards
+	private int id; //the unique sequence of boards
 	
 	private final int max = 1024;
 	private Arti[] arti = new Arti[1024]; 
@@ -48,7 +48,7 @@ public class POOBoard {
 	}
 	public void show(){
 		System.out.println("[BOARD] "+name+" [BOARD]");
-		printShow("0","Home page","");
+		printShow("0","..","back");
 		for(int i=0;i<NumOfArti;i++){
 			printShow(Integer.toString(i), Integer.toString(arti[i].id), arti[i].title);
 		}
