@@ -94,4 +94,16 @@ public class POOBoard {
 	public String getName(){
 		return name;
 	}
+	public int getArtiId(int i){
+		if(i>0)
+			return arti[i-1].id;
+		else 	// back to home page
+			return 0;   
+	}
+	public String getArtiType(int i){
+		if(i>0)
+			return arti[i-1].title;
+		else 	// back to home page
+			return "dir";   
+	}
 }

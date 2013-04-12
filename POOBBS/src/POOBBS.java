@@ -8,6 +8,7 @@ public class POOBBS {
 		Scanner scanner = new Scanner(System.in); 
 		int nowDir = 0;  // the pos of dir
 		int nowBoard = 0; // the pos of board
+		int nowArticle = 0; // the pos of article
 		int numOfDir = 0;
 		int numOfBoard = 0;
 		int numOfArticle = 0;
@@ -18,15 +19,27 @@ public class POOBBS {
 		numOfDir = makeDir(dir,numOfDir);
 		numOfBoard = makeBoard(dir,board,numOfBoard);
 		numOfArticle = makeArticle(board,article,numOfArticle);
-
+		
+		boolean show = true;  // show the dir, board or article
+		
 		String command;
 		
+		int seq = 0;
+		if(String.valueOf(scanner.next()).equals("yes")){
+			seq = 1;
+		}
+		//  		  WORKING  AREA				//
+
 		while(true){ 
 			//dir[nowDir].move(1, 2);
+			
 			switch (viewMode) {
 			
 			case 1: //dir mode
-				dir[nowDir].show();
+				if(show)
+					dir[nowDir].show();
+				show = true;
+				
 				command = String.valueOf(scanner.next());
 				if(command.equals("board")){
 					String name = String.valueOf(scanner.next());
@@ -62,24 +75,27 @@ public class POOBBS {
 					
 				}else if(isNum(command)){
 					int num = Integer.parseInt(command);
-					if(dir[nowDir].getLineType(num).equals("dir"))
+					if(dir[nowDir].getLineType(num).equals("dir")){
+						
 						nowDir = dir[nowDir].getLineId(num);
-					else if(dir[nowDir].getLineType(num).equals("board")){
+					}else if(dir[nowDir].getLineType(num).equals("board")){
 						nowBoard = dir[nowDir].getLineId(num);
 						viewMode = 2; // to board
 					}
 				}else{
 					System.out.println("[error input]");
+					show = false;
 					continue;
 				}
 				break;
 			case 2: //board mode
-				board[nowBoard].show();
+				if(show)
+					board[nowBoard].show();
+				show = true;
+				
 				command = String.valueOf(scanner.next());
 				if(command.equals("article")){
-					System.out.print("Title:");
 					String title = String.valueOf(scanner.next());
-					System.out.print("Content:");
 					String content = String.valueOf(scanner.next());
 					
 					article[numOfArticle] = new POOArticle(title,content);
@@ -94,24 +110,68 @@ public class POOBBS {
 					int pos = scanner.nextInt();
 					board[nowBoard].del(pos);
 					
+				}else if(command.equals("list")){	// show article information
+					int num = scanner.nextInt();
+					nowArticle = board[nowBoard].getArtiId(num);
+					article[nowArticle].list();
+					show = false;
 				}else if(isNum(command)){
 					int num = Integer.parseInt(command);
 					if(num == 0){  // back to dir
 						viewMode = 1;//to dir
+					}else {
+						nowArticle = board[nowBoard].getArtiId(num);
+						viewMode = 3; // to article
 					}
 					
 				}else{
 					System.out.println("[error input]");
+					show = false;
 					continue;
 				}
 				break;
 				
 			case 3: //article mode
+				if(show)
+					article[nowArticle].show();
+				show = true;
+				
+				command = String.valueOf(scanner.next());
+				if(command.equals("push")){
+					String message = String.valueOf(scanner.next());
+					article[nowArticle].push(message);
+					
+				}else if(command.equals("arrow")){
+					String message = String.valueOf(scanner.next());
+					article[nowArticle].arrow(message);
+					
+				}else if(command.equals("boo")){	
+					String message = String.valueOf(scanner.next());
+					article[nowArticle].boo(message);
+					
+				}else if(isNum(command)){
+					int num = Integer.parseInt(command);
+					if(num == 0)  // back to board
+						viewMode = 2; //to board
+					
+				}
 				break;
 			}
 		}
+		
+		
 	}
-
+	
+	private static void DEMO(int seq){
+		if(seq == 0){
+			return ;
+		}else if(seq == 1){
+			
+		}else if(seq == 2){
+			
+		}
+	}
+	
 	private static int makeDir(POODirectory[] dir, int numOfDir){
 		int i;
 		dir[numOfDir++] = new POODirectory("My Favorite");
