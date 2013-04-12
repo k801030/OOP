@@ -115,6 +115,7 @@ public class POOBBS {
 				}else{
 					System.out.println("[error input]");
 					show = false;
+					seq--;
 					continue;
 				}
 				break;
@@ -155,6 +156,7 @@ public class POOBBS {
 				}else{
 					System.out.println("[error input]");
 					show = false;
+					seq--;
 					continue;
 				}
 				break;
@@ -179,6 +181,11 @@ public class POOBBS {
 					if(num == 0)  // back to board
 						viewMode = 2; //to board
 					
+				}else{
+					System.out.println("[error input]");
+					show = false;
+					seq--;
+					continue;
 				}
 				break;
 			}
