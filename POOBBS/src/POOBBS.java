@@ -210,27 +210,28 @@ public class POOBBS {
 			System.out.println("command ["+yellow+"dir MYDIR"+reset+"], to create dir named MYDIR");
 			
 		}else if(seq == 3){
-			System.out.println("command ["+yellow+"spilt"+reset+"], to add split");
+			System.out.println("command ["+yellow+"split"+reset+"], to add split");
 		}else if(seq == 4){
 			System.out.println("command ["+yellow+"board CSIE_b99"+reset+"], to add board");
-			System.out.println("command ["+yellow+"move 1 3"+reset+"], to exchange JOKE and LOL");
 		}else if(seq == 5){
-			System.out.println("command ["+yellow+"del 2"+reset+"], to delete SEX");
+			System.out.println("command ["+yellow+"move 1 3"+reset+"], to exchange JOKE and LOL");
 		}else if(seq == 6){
-			System.out.println("command ["+yellow+"4"+reset+"], to enter/show CSIE_b99");
+			System.out.println("command ["+yellow+"del 2"+reset+"], to delete SEX");
 		}else if(seq == 7){
-			System.out.println("command ["+yellow+"move 1 3"+reset+"], to exchange the articles");
+			System.out.println("command ["+yellow+"4"+reset+"], to enter/show CSIE_b99");
 		}else if(seq == 8){
-			System.out.println("command ["+yellow+"del 2"+reset+"], to delete the article");
+			System.out.println("command ["+yellow+"move 1 3"+reset+"], to exchange the articles");
 		}else if(seq == 9){
-			System.out.println("command ["+yellow+"article test test123"+reset+"], to create article named test and the content is test123");
+			System.out.println("command ["+yellow+"del 2"+reset+"], to delete the article");
 		}else if(seq == 10){
-			System.out.println("command ["+yellow+"1"+reset+"], to enter/show the article");
+			System.out.println("command ["+yellow+"article test test123"+reset+"], to create article named test and the content is test123");
 		}else if(seq == 11){
-			System.out.println("command ["+yellow+"push haha"+reset+"], to push the article");
+			System.out.println("command ["+yellow+"1"+reset+"], to enter/show the article");
 		}else if(seq == 12){
-			System.out.println("command ["+yellow+"0"+reset+"], to back");
+			System.out.println("command ["+yellow+"push haha"+reset+"], to push the article");
 		}else if(seq == 13){
+			System.out.println("command ["+yellow+"0"+reset+"], to back");
+		}else if(seq == 14){
 			System.out.println("command ["+yellow+"list 1"+reset+"], to list the article");
 		}
 			return seq+1;
