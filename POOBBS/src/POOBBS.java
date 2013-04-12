@@ -24,22 +24,52 @@ public class POOBBS {
 		
 		String command;
 		
+		
 		int seq = 0;
-		if(String.valueOf(scanner.next()).equals("yes")){
-			seq = 1;
+		
+		//               START                  //
+		System.out.println("Do you want to start the demo version?(y/n)");
+		while(true){
+			String choice = String.valueOf(scanner.next());
+			if(choice.equals("y")){
+				seq = 1;
+				break;
+			}else if(choice.equals("n")){
+				seq = 0;
+				break;
+			}else {
+				System.out.println("error typing");
+			}
 		}
+			
 		//  		  WORKING  AREA				//
 
 		while(true){ 
-			//dir[nowDir].move(1, 2);
+			switch (viewMode) {
+			case 1:
+				if(show)
+					dir[nowDir].show();
+				break;
+			case 2:
+				if(show)
+					board[nowBoard].show();
+				
+				break;	
+			case 3:
+				if(show)
+					article[nowArticle].show();
+			default:
+				break;
+			}
+			show = true;
+			
+			//  For DEMO  //
+			seq = DEMO(seq);  
 			
 			switch (viewMode) {
 			
 			case 1: //dir mode
-				if(show)
-					dir[nowDir].show();
-				show = true;
-				
+
 				command = String.valueOf(scanner.next());
 				if(command.equals("board")){
 					String name = String.valueOf(scanner.next());
@@ -88,11 +118,9 @@ public class POOBBS {
 					continue;
 				}
 				break;
-			case 2: //board mode
-				if(show)
-					board[nowBoard].show();
-				show = true;
 				
+			case 2: //board mode
+
 				command = String.valueOf(scanner.next());
 				if(command.equals("article")){
 					String title = String.valueOf(scanner.next());
@@ -132,10 +160,7 @@ public class POOBBS {
 				break;
 				
 			case 3: //article mode
-				if(show)
-					article[nowArticle].show();
-				show = true;
-				
+
 				command = String.valueOf(scanner.next());
 				if(command.equals("push")){
 					String message = String.valueOf(scanner.next());
@@ -162,14 +187,43 @@ public class POOBBS {
 		
 	}
 	
-	private static void DEMO(int seq){
+	private static int DEMO(int seq){
 		if(seq == 0){
-			return ;
-		}else if(seq == 1){
-			
-		}else if(seq == 2){
-			
+			return 0;
 		}
+		System.out.print("##DEMO Line## ");
+		if(seq == 1){
+			System.out.println("command [4], to enter/show HOT");
+		}else if(seq == 2){
+			System.out.println("command [dir MYDIR], to create dir named MYDIR");
+			
+		}else if(seq == 3){
+			System.out.println("command [spilt], to add split");
+		}else if(seq == 4){
+			System.out.println("command [board CSIE_b99], to add board");
+			System.out.println("command [move 1 3], to exchange JOKE and LOL");
+		}else if(seq == 5){
+			System.out.println("command [del 2], to delete SEX");
+		}else if(seq == 6){
+			System.out.println("command [4], to enter/show CSIE_b99");
+		}else if(seq == 7){
+			System.out.println("command [move 1 3], to exchange the articles");
+		}else if(seq == 8){
+			System.out.println("command [del 2], to delete the article");
+		}else if(seq == 9){
+			System.out.println("command [article test test123], to create article named test and the content is test123");
+		}else if(seq == 10){
+			System.out.println("command [1], to enter/show the article");
+		}else if(seq == 11){
+			System.out.println("command [push haha], to push the article");
+		}else if(seq == 12){
+			System.out.println("command [0], to back");
+		}else if(seq == 13){
+			System.out.println("command [list 1], to list the article");
+		}else if(seq == 14){
+			System.out.println("The demo ends. Now you can use POOBBS by yourself. Thanks!");
+		} 
+		return seq+1;
 	}
 	
 	private static int makeDir(POODirectory[] dir, int numOfDir){
@@ -205,8 +259,8 @@ public class POOBBS {
 	}
 	private static int makeBoard(POODirectory[] dir,POOBoard[] board,int numOfBoard){
 		int i;
-		board[numOfBoard++] = new POOBoard("CSIE_b99");
 		board[numOfBoard++] = new POOBoard("CSIE_b98");
+		board[numOfBoard++] = new POOBoard("CSIE_b99");
 		board[numOfBoard++] = new POOBoard("CSIE_b00");
 		board[numOfBoard++] = new POOBoard("CSIE_b01");
 		for(i=0;i<4;i++)
@@ -221,10 +275,15 @@ public class POOBBS {
 	}
 	private static int makeArticle(POOBoard[] board,POOArticle[] article,int numOfArticle){
 		int i;
-		article[numOfArticle++] = new POOArticle("intr:Vison","hello");
-		article[numOfArticle++] = new POOArticle("intr:Jason","hello");
-		article[numOfArticle++] = new POOArticle("intr:YingJiuo","hello");
+		article[numOfArticle++] = new POOArticle("intr:Vison","hello1");
+		article[numOfArticle++] = new POOArticle("intr:Jason","hello2");
+		article[numOfArticle++] = new POOArticle("intr:YingJiuo","hello3");
 		for(i=0;i<3;i++)
+			board[1].add(article[i]);
+		article[numOfArticle++] = new POOArticle("ex1","123");
+		article[numOfArticle++] = new POOArticle("ex2","321");
+		article[numOfArticle++] = new POOArticle("ex3","1234567");
+		for(i=3;i<6;i++)
 			board[0].add(article[i]);
 		return numOfArticle;
 	}
