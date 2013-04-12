@@ -53,7 +53,7 @@ public class POOBBS {
 			case 2:
 				if(show)
 					board[nowBoard].show();
-				
+
 				break;	
 			case 3:
 				if(show)
@@ -191,39 +191,42 @@ public class POOBBS {
 		if(seq == 0){
 			return 0;
 		}
-		System.out.print("##DEMO Line## ");
+		//add color
+		String green = String.valueOf("\033[32m");
+		String yellow = String.valueOf("\033[33m");
+		String reset = String.valueOf("\33[0m");
+
+		System.out.print(green+"## DEMO Line ## "+reset);
 		if(seq == 1){
-			System.out.println("command [4], to enter/show HOT");
+			System.out.println("command ["+yellow+"4"+reset+"], to enter/show HOT");
 		}else if(seq == 2){
-			System.out.println("command [dir MYDIR], to create dir named MYDIR");
+			System.out.println("command ["+yellow+"dir MYDIR"+reset+"], to create dir named MYDIR");
 			
 		}else if(seq == 3){
-			System.out.println("command [spilt], to add split");
+			System.out.println("command ["+yellow+"spilt"+reset+"], to add split");
 		}else if(seq == 4){
-			System.out.println("command [board CSIE_b99], to add board");
-			System.out.println("command [move 1 3], to exchange JOKE and LOL");
+			System.out.println("command ["+yellow+"board CSIE_b99"+reset+"], to add board");
+			System.out.println("command ["+yellow+"move 1 3"+reset+"], to exchange JOKE and LOL");
 		}else if(seq == 5){
-			System.out.println("command [del 2], to delete SEX");
+			System.out.println("command ["+yellow+"del 2"+reset+"], to delete SEX");
 		}else if(seq == 6){
-			System.out.println("command [4], to enter/show CSIE_b99");
+			System.out.println("command ["+yellow+"4"+reset+"], to enter/show CSIE_b99");
 		}else if(seq == 7){
-			System.out.println("command [move 1 3], to exchange the articles");
+			System.out.println("command ["+yellow+"move 1 3"+reset+"], to exchange the articles");
 		}else if(seq == 8){
-			System.out.println("command [del 2], to delete the article");
+			System.out.println("command ["+yellow+"del 2"+reset+"], to delete the article");
 		}else if(seq == 9){
-			System.out.println("command [article test test123], to create article named test and the content is test123");
+			System.out.println("command ["+yellow+"article test test123"+reset+"], to create article named test and the content is test123");
 		}else if(seq == 10){
-			System.out.println("command [1], to enter/show the article");
+			System.out.println("command ["+yellow+"1"+reset+"], to enter/show the article");
 		}else if(seq == 11){
-			System.out.println("command [push haha], to push the article");
+			System.out.println("command ["+yellow+"push haha"+reset+"], to push the article");
 		}else if(seq == 12){
-			System.out.println("command [0], to back");
+			System.out.println("command ["+yellow+"0"+reset+"], to back");
 		}else if(seq == 13){
-			System.out.println("command [list 1], to list the article");
-		}else if(seq == 14){
-			System.out.println("The demo ends. Now you can use POOBBS by yourself. Thanks!");
-		} 
-		return seq+1;
+			System.out.println("command ["+yellow+"list 1"+reset+"], to list the article");
+		}
+			return seq+1;
 	}
 	
 	private static int makeDir(POODirectory[] dir, int numOfDir){
