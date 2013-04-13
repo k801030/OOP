@@ -83,6 +83,8 @@ public class POOBBS {
 					}
 					if(add==false){
 							System.out.println("The board \""+name+"\" does not exist");
+							show = false;
+							seq--;
 					}
 					
 				}else if(command.equals("dir")){
@@ -195,7 +197,7 @@ public class POOBBS {
 	}
 	
 	private static int DEMO(int seq){
-		if(seq == 0){
+		if(seq <= 0){
 			return 0;
 		}
 		//add color
