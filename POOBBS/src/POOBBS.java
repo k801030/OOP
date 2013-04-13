@@ -47,21 +47,29 @@ public class POOBBS {
 		//  		  WORKING  AREA				//
 
 		while(true){ 
-			System.out.print(clear); 
-			System.out.flush();
+			
 			switch (viewMode) {
 			case 1:
-				if(show)
+				if(show){
+					System.out.print(clear); 
+					System.out.flush();
 					dir[nowDir].show();
+				}
 				break;
 			case 2:
-				if(show)
+				if(show){
+					System.out.print(clear); 
+					System.out.flush();
 					board[nowBoard].show();
+				}
 
 				break;	
 			case 3:
-				if(show)
+				if(show){
+					System.out.print(clear); 
+					System.out.flush();
 					article[nowArticle].show();
+				}
 			default:
 				break;
 			}
