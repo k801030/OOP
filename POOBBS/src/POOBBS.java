@@ -212,9 +212,9 @@ public class POOBBS {
 
 		System.out.print(green+"## DEMO Line ## "+reset);
 		if(seq == 1){
-			System.out.print("use ["+yellow+"4"+reset+"] command to enter/show HOT");
+			System.out.print("use ["+yellow+"4"+reset+"] command to enter/show HOT: ");
 		}else if(seq == 2){
-			System.out.print("use ["+yellow+"dir MYDIR"+reset+"] command to create dir named MYDIR");
+			System.out.print("use ["+yellow+"dir MYDIR"+reset+"] command to create dir named MYDIR: ");
 			
 		}else if(seq == 3){
 			System.out.print("use ["+yellow+"split"+reset+"] command to add split: ");
