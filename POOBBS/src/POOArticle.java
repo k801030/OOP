@@ -59,10 +59,10 @@ public class POOArticle {
 	}
 	public void list(){
 		System.out.println("[Article Info]");
-		System.out.print(" eval:"+evalCount);
+		System.out.print("eval:"+evalCount);
 		System.out.print(" ID: "+id);
 		System.out.print(" title: "+title);
-		System.out.print(" author: "+author);
+		System.out.println(" author: "+author);
 	}
 	private boolean checkEval(){
 		if(numOfEval == MAXEVAL){
