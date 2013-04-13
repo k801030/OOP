@@ -43,11 +43,12 @@ public class POOBBS {
 				System.out.println("error typing");
 			}
 		}
-		final String ESC = "\033[";
-		System.out.print(ESC + "2J"); System.out.flush();
+		final String clear = "\033[2J";
 		//  		  WORKING  AREA				//
 
 		while(true){ 
+			System.out.print(clear); 
+			System.out.flush();
 			switch (viewMode) {
 			case 1:
 				if(show)
