@@ -66,11 +66,14 @@ public class POOBBS {
 			//  For DEMO  //
 			seq = DEMO(seq);  
 			
+			command = String.valueOf(scanner.next());
+			
+			if(command.equals("exit"))
+				exit();
 			switch (viewMode) {
 			
 			case 1: //dir mode
 
-				command = String.valueOf(scanner.next());
 				if(command.equals("board")){
 					String name = String.valueOf(scanner.next());
 					boolean add = false;
@@ -124,7 +127,7 @@ public class POOBBS {
 				
 			case 2: //board mode
 
-				command = String.valueOf(scanner.next());
+
 				if(command.equals("article")){
 					String title = String.valueOf(scanner.next());
 					String content = String.valueOf(scanner.next());
@@ -165,7 +168,6 @@ public class POOBBS {
 				
 			case 3: //article mode
 
-				command = String.valueOf(scanner.next());
 				if(command.equals("push")){
 					String message = String.valueOf(scanner.next());
 					article[nowArticle].push(message);
@@ -195,6 +197,9 @@ public class POOBBS {
 		
 		
 	}
+	private static void exit(){
+		System.out.println("Thanks for your use. Good bye!");
+	}
 	
 	private static int DEMO(int seq){
 		if(seq <= 0){
@@ -207,34 +212,36 @@ public class POOBBS {
 
 		System.out.print(green+"## DEMO Line ## "+reset);
 		if(seq == 1){
-			System.out.println("command ["+yellow+"4"+reset+"], to enter/show HOT");
+			System.out.println("use ["+yellow+"4"+reset+"] command to enter/show HOT");
 		}else if(seq == 2){
-			System.out.println("command ["+yellow+"dir MYDIR"+reset+"], to create dir named MYDIR");
+			System.out.println("use ["+yellow+"dir MYDIR"+reset+"] command to create dir named MYDIR");
 			
 		}else if(seq == 3){
-			System.out.println("command ["+yellow+"split"+reset+"], to add split");
+			System.out.println("use ["+yellow+"split"+reset+"] command to add split");
 		}else if(seq == 4){
-			System.out.println("command ["+yellow+"board CSIE_b99"+reset+"], to add board");
+			System.out.println("use ["+yellow+"board CSIE_b99"+reset+"] command to add board");
 		}else if(seq == 5){
-			System.out.println("command ["+yellow+"move 1 3"+reset+"], to exchange JOKE and LOL");
+			System.out.println("use ["+yellow+"move 1 3"+reset+"] command to exchange JOKE and LOL");
 		}else if(seq == 6){
-			System.out.println("command ["+yellow+"del 2"+reset+"], to delete SEX");
+			System.out.println("use ["+yellow+"del 2"+reset+"] command to delete SEX");
 		}else if(seq == 7){
-			System.out.println("command ["+yellow+"4"+reset+"], to enter/show CSIE_b99");
+			System.out.println("use ["+yellow+"4"+reset+"] command to enter/show CSIE_b99");
 		}else if(seq == 8){
-			System.out.println("command ["+yellow+"move 1 3"+reset+"], to exchange the articles");
+			System.out.println("use ["+yellow+"move 1 3"+reset+"] command to exchange the articles");
 		}else if(seq == 9){
-			System.out.println("command ["+yellow+"del 2"+reset+"], to delete the article");
+			System.out.println("use ["+yellow+"del 2"+reset+"] command to delete the article");
 		}else if(seq == 10){
-			System.out.println("command ["+yellow+"article test test123"+reset+"], to create article named test and the content is test123");
+			System.out.println("use ["+yellow+"article test test123"+reset+"] command to create article named test and the content is test123");
 		}else if(seq == 11){
-			System.out.println("command ["+yellow+"1"+reset+"], to enter/show the article");
+			System.out.println("use ["+yellow+"1"+reset+"] command to enter/show the article");
 		}else if(seq == 12){
-			System.out.println("command ["+yellow+"push haha"+reset+"], to push the article");
+			System.out.println("use ["+yellow+"push haha"+reset+"] command, to push the article");
 		}else if(seq == 13){
-			System.out.println("command ["+yellow+"0"+reset+"], to back");
+			System.out.println("use ["+yellow+"0"+reset+"] command to back");
 		}else if(seq == 14){
-			System.out.println("command ["+yellow+"list 1"+reset+"], to list the article");
+			System.out.println("use ["+yellow+"list 1"+reset+"] command to list the article");
+		}else if(seq == 15){
+			System.out.println("The DEMO ends. Now you can try by yourself or use ["+yellow+"exit"+reset+"] command to exit");
 		}
 			return seq+1;
 	}
