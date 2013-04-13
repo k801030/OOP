@@ -2,6 +2,8 @@ import java.util.Scanner;
 import java.util.prefs.BackingStoreException;
 import java.util.regex.Pattern;
 
+import javax.management.loading.PrivateClassLoader;
+
 
 public class POOBBS {
 	public static void main(String[] args) {
@@ -41,7 +43,8 @@ public class POOBBS {
 				System.out.println("error typing");
 			}
 		}
-			
+		final String ESC = "\033[";
+		System.out.print(ESC + "2J"); System.out.flush();
 		//  		  WORKING  AREA				//
 
 		while(true){ 
@@ -68,8 +71,10 @@ public class POOBBS {
 			
 			command = String.valueOf(scanner.next());
 			
-			if(command.equals("exit"))
+			if(command.equals("exit")){
 				exit();
+				return;
+			}
 			switch (viewMode) {
 			
 			case 1: //dir mode
@@ -233,7 +238,7 @@ public class POOBBS {
 		}else if(seq == 10){
 			System.out.print("use ["+yellow+"article intr hello"+reset+"] command to create article named intr and the content is hello: ");
 		}else if(seq == 11){
-			System.out.print("use ["+yellow+"1"+reset+"] command to enter/show the article: ");
+			System.out.print("use ["+yellow+"3"+reset+"] command to enter/show the article you just created: ");
 		}else if(seq == 12){
 			System.out.print("use ["+yellow+"push haha"+reset+"] command, to push the article: ");
 		}else if(seq == 13){
@@ -241,7 +246,10 @@ public class POOBBS {
 		}else if(seq == 14){
 			System.out.print("use ["+yellow+"list 1"+reset+"] command to list the article: ");
 		}else if(seq == 15){
+			System.out.print("use ["+yellow+"0"+reset+"] command to back to HOT: ");
+		}else if(seq == 16){
 			System.out.println("The DEMO ends. Now you can try by yourself or use ["+yellow+"exit"+reset+"] command to exit. ");
+			return 0;
 		}
 			return seq+1;
 	}
