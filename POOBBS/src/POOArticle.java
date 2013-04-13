@@ -46,6 +46,8 @@ public class POOArticle {
 		}
 	}
 	public void show(){
+		System.out.println("[ARTICLE] "+title+" [ARTICLE]");
+
 		System.out.println("[  ID  ] "+id);
 		System.out.println("[Title ] "+title);
 		System.out.println("[Author] "+author);
@@ -56,11 +58,11 @@ public class POOArticle {
 		
 	}
 	public void list(){
-		System.out.println("[Info]");
-		System.out.println("evaluation count: "+evalCount);
-		System.out.println("ID: "+id);
-		System.out.println("title: "+title);
-		System.out.println("author: "+author);
+		System.out.println("[Article Info]");
+		System.out.print(" eval:"+evalCount);
+		System.out.print(" ID: "+id);
+		System.out.print(" title: "+title);
+		System.out.print(" author: "+author);
 	}
 	private boolean checkEval(){
 		if(numOfEval == MAXEVAL){

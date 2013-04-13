@@ -81,6 +81,8 @@ public class POOBBS {
 			command = String.valueOf(scanner.next());
 			
 			if(command.equals("exit")){
+				System.out.print(clear); 
+				System.out.flush();
 				exit();
 				return;
 			}
